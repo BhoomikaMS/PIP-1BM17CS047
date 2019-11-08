@@ -1,0 +1,58 @@
+from tkinter import *
+
+root=Tk()
+root.title("Online Movie Tickets Booking")
+root.geometry("500x300")
+app=Frame(root)
+app.grid()
+
+def validate():
+	lang=lan.get()
+	if lang and (cb1check.get() or cb2check.get() or cb3check.get()) and num.get():
+		message['text']="Status: Successfull"
+	else:
+		message['text']="Status: Error"
+	
+
+lbl1=Label(app, text="Select a language: ")
+lbl1.grid(sticky=W)
+
+lan=StringVar()
+
+rb1=Radiobutton(app, text="Kannada", variable=lan, value="Kannada", command=validate)
+rb1.grid(sticky=W)
+
+rb2=Radiobutton(app, text="English", variable=lan, value="English", command=validate)
+rb2.grid(sticky=W)
+
+rb3=Radiobutton(app, text="Hindi", variable=lan, value="Hindi", command=validate)
+rb3.grid(sticky=W)
+
+
+lbl2=Label(app, text="Select a movie: ")
+lbl2.grid(sticky=W)
+cb1check=BooleanVar()
+cb1=Checkbutton(app, text="ABC", variable=cb1check, command=validate)
+cb1.grid(sticky=W)
+
+cb2check=BooleanVar()
+cb2=Checkbutton(app, text="LMN", variable=cb2check, command=validate)
+cb2.grid(sticky=W)
+
+cb3check=BooleanVar()
+cb3=Checkbutton(app, text="XYZ", variable=cb3check, command=validate)
+cb3.grid(sticky=W)
+
+Label(app, text="Select the number of tickets: ").grid(sticky=W)
+num=IntVar(app)
+num.set(1)
+choices={1,2,3,4,5}
+dropdown=OptionMenu(app,num,*choices)
+dropdown.grid(sticky=W)
+
+message=Label(app, text= "Status: ")
+message.grid()
+
+root.mainloop()
+
+
